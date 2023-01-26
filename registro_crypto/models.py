@@ -22,4 +22,7 @@ def select_all():
         resultado.append(dato)
     
     return resultado
+
+def insert():
+    pass
   

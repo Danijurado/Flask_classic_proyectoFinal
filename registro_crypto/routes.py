@@ -7,3 +7,7 @@ def index():
     registros = select_all()
     
     return render_template('index.html',pageTitle='inicio', data=registros )
+
+@app.route('/purchase')
+def compra():
+    return 'aqui para comprar'
