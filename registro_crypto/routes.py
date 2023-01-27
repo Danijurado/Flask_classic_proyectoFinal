@@ -1,7 +1,7 @@
 from registro_crypto import app
 from flask import render_template
 from registro_crypto.models import select_all
-
+from registro_crypto.services import get_exchange
 @app.route('/')
 def index():
     registros = select_all()
@@ -10,4 +10,7 @@ def index():
 
 @app.route('/purchase')
 def compra():
-    return 'aqui para comprar'
+    #get_exchange('EUR','BTC')
+    #resultado = get_exchange('EUR','BTC')
+    
+    return render_template('purchase.html',pageTitle='compra')

@@ -6,12 +6,15 @@ header,footer{
 }
 
 body{
-    min-width: 100vh;
+    height: 100vh;
     display: grid;
     grid-template-rows: auto 50px 1fr auto;
     margin: 0;
 }
 
+section{
+    overflow-y: scroll;
+}
 
 ul.errors{
     color: red;

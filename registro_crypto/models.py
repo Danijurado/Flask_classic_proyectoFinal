@@ -23,6 +23,5 @@ def select_all():
     
     return resultado
 
-def insert():
-    pass
+
   
