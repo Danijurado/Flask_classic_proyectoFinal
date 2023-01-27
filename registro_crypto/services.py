@@ -8,4 +8,4 @@ def get_exchange(base,quota):
     response = requests.get(url, headers=headers)
     
     if response.status_code == 200:
-        return response.json()
+        return response.json()['rate']

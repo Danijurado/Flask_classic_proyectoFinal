@@ -1,33 +1,41 @@
 {%extends 'base.html'%}
 {%block section%}
-<form>
+<form action="/purchase", method="post">
 
     <!-- Grid -->
     <div class="grid">
         <div>
-            <!-- Markup example 1: input is inside label -->
-            <label for="firstname">
-                First name
-                <input type="text" id="firstname" name="firstname" placeholder="First name" required>
-            </label>
+            <label for="moneda_from">From</label>
+            <select id="moneda_from" name="moneda_from" required>
+                <option value="EUR">EUR</option>
 
-            <label for="lastname">
-                Last name
-                <input type="text" id="lastname" name="lastname" placeholder="Last name" required>
+
+            </select>
+            <label for="cantidad_from">
+                Q
+                <input type="number" id="cantidad_from" name="cantidad_from" value="{{cantidad_from}}" required>
             </label>
+            <button type="submit">Calcular</button>
+        
+
         </div>
 
         <div>
-            <!-- Markup example 1: input is inside label -->
-            <label for="firstname">
-                First name
-                <input type="text" id="firstname" name="firstname" placeholder="First name" required>
+            <label for="moneda_to">to</label>
+            <select id="moneda_to" name="moneda_to" required>
+                <option value="BTC">BTC</option>
+
+
+            </select>
+            <label for="cantidad_to">
+                Q
+                <input type="number" id="cantidad_to" name="cantidad_to" value="{{cantidad_to}}" disabled>
+            </label>
+            <label for="unit">
+                PU
+                <input type="number" id="unit" name="unit" value="{{unit}}" disabled>
             </label>
 
-            <label for="lastname">
-                Last name
-                <input type="text" id="lastname" name="lastname" placeholder="Last name" required>
-            </label>
         </div>
 
 
