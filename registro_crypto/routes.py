@@ -1,3 +1,5 @@
+
+
 from registro_crypto import app
 from flask import render_template
 from registro_crypto.models import select_all
@@ -29,4 +31,7 @@ def compra_post():
    
    return render_template('purchase.html', pageTitle='compra',moneda_from=from_currency,cantidad_from=q,unit=1/unit,cantidad_to=cantidad_to)
 
+@app.route('/status')
+def status():
+    return render_template('status.html', pageTitle='status')
   

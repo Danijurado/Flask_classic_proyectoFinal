@@ -1,6 +1,7 @@
 import sqlite3
 from config import ORIGIN_DATA
 
+
 def select_all():
     con = sqlite3.connect(ORIGIN_DATA)
     cur = con.cursor()
@@ -23,5 +24,7 @@ def select_all():
     
     return resultado
 
+def insert():
+    pass
 
   
