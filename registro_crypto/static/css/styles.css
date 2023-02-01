@@ -1,5 +1,5 @@
 header,footer{
-    background-color:rgb(52, 15, 86);
+    background-color:var(--my_color);
     color: var(--primary-inverse);
     font-size: 1.4em;
     font-weight: bold;
