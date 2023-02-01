@@ -1,10 +1,9 @@
-
-
 from registro_crypto import app
 from flask import render_template
 from registro_crypto.models import select_all
 from registro_crypto.services import get_exchange
 from flask import Flask, request
+
 @app.route('/')
 def index():
     registros = select_all()
@@ -26,8 +25,6 @@ def compra_post():
    unit=get_exchange(from_currency,to_currency)
    
    cantidad_to = unit * q
-   
-
    
    return render_template('purchase.html', pageTitle='compra',moneda_from=from_currency,cantidad_from=q,unit=1/unit,cantidad_to=cantidad_to)
 
