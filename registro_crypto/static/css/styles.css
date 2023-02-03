@@ -1,29 +1,41 @@
-header,footer{
-    background-color:var(--my_color);
+header,
+footer {
+    background-color: var(--my_color);
     color: var(--primary-inverse);
     font-size: 1.4em;
     font-weight: bold;
 }
 
-body{
+body {
     height: 100vh;
     display: grid;
     grid-template-rows: auto 50px 1fr auto;
     margin: 0;
 }
 
-section{
+section {
     overflow-y: scroll;
 }
 
-ul.errors{
+ul.errors {
     color: red;
     font-weight: bold;
     font-size: 0.8em;
 }
 
-ul.flashes{
+ul.flashes {
     color: rgb(42, 172, 85);
     font-weight: bold;
     font-size: 0.8em;
+}
+
+button
+{
+background-color: var(--my_color);
+}
+a{
+    color:var(--my_color);
+}
+.cta {
+    background-color: var(--my_color);
 }
