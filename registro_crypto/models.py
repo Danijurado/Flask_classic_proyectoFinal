@@ -41,6 +41,26 @@ def recuperado():
     return connect.res.fetchone()[0]
     
     
+def cantidad_crypto(moneda):
+    connect = Conexion(f'SELECT sum (cantidad_to) FROM Movimientos WHERE moneda_to = "{moneda}"')
+    compra_crypto = connect.res.fetchone()[0] or 0
     
+    connect = Conexion(f'SELECT sum (cantidad_from) FROM Movimientos WHERE moneda_from = "{moneda}"')
+    venta_crypto = connect.res.fetchone()[0] or 0
+    return compra_crypto - venta_crypto
+    
+    
+def monedas_compradas():
+    connect = Conexion('SELECT distinct(moneda_to) FROM Movimientos where moneda_to !=  "EUR"')
+    filas = connect.res.fetchall()
+    
+    lista_monedas =[]
+    for fila in filas:
+        lista_monedas.append(fila[0])
+        
+    return lista_monedas
+
+
+
 
     

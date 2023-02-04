@@ -1,6 +1,6 @@
 from registro_crypto import app
 from flask import render_template, redirect, url_for
-from registro_crypto.models import select_all,insert, invertido, recuperado
+from registro_crypto.models import select_all,insert, invertido, recuperado, cantidad_crypto, monedas_compradas
 from registro_crypto.services import get_exchange
 from flask import Flask, request
 from datetime import date,datetime
@@ -48,5 +48,13 @@ def compra_post():
 def status():
     inversion = invertido()
     inversion_recuperada = recuperado()
-    return render_template('status.html', pageTitle='status', invertido = inversion, recuperado = inversion_recuperada)
+    valor_actual = 0
+    mis_monedas = monedas_compradas()
+    
+    for moneda in mis_monedas:
+        cantidad = cantidad_crypto(moneda)
+        if cantidad > 0:
+            valor_actual += get_exchange(moneda,'EUR')
+            
+    return render_template('status.html', pageTitle='status', invertido = inversion, recuperado = inversion_recuperada, valor_actual = valor_actual)
   
