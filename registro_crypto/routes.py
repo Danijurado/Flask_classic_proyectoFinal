@@ -5,6 +5,17 @@ from registro_crypto.services import get_exchange
 from flask import Flask, request
 from datetime import date,datetime
 
+def validate(cantidad_from,moneda):
+    errores = []
+    
+    if moneda == 'EUR':
+        return errores
+    print(cantidad_crypto(moneda))
+    if cantidad_from > cantidad_crypto(moneda):
+        errores.append('error')
+        
+    return errores
+
 @app.route('/')
 def index():
     registros = select_all()
@@ -24,23 +35,33 @@ def compra():
     
     return render_template('purchase.html',pageTitle='compra')
 
+def get_unit(from_currency,to_currency):
+    if request.form['unit']:
+        return float(request.form['unit'])
+    else:
+        return 1/get_exchange(from_currency,to_currency)
+        
+        
 @app.route('/purchase',methods = ['POST'])
 def compra_post():
-   from_currency = request.form["moneda_from"]
-   to_currency = request.form['moneda_to']
-   q = float(request.form['cantidad_from'])
-   cantidad_to = request.form['cantidad_to']
-   
-   if not cantidad_to:
-    unit=get_exchange(from_currency,to_currency)
+    from_currency = request.form["moneda_from"]
+    to_currency = request.form['moneda_to']
+    q = float(request.form['cantidad_from'])
+    rate = get_exchange(from_currency,to_currency)
+    unit = 1/rate
+    cantidad_to = rate * q
+
+    if request.form['action']== 'calculate':
+        return render_template('purchase.html', pageTitle='compra',moneda_from=from_currency,cantidad_from=q,unit=unit,cantidad_to=cantidad_to, moneda_to = to_currency)
     
-    cantidad_to = unit * q
-    
-    return render_template('purchase.html', pageTitle='compra',moneda_from=from_currency,cantidad_from=q,unit=1/unit,cantidad_to=cantidad_to, moneda_to = to_currency)
+    #Comprar
+    errores = validate(q,from_currency)
+    if errores:
+        return render_template('purchase.html', pageTitle='compra',moneda_from=from_currency,cantidad_from=q,unit=unit,cantidad_to=cantidad_to, moneda_to = to_currency, errores = errores)
+        
+    insert(moneda_from= from_currency,moneda_to= to_currency, cantidad_from= q, cantidad_to= cantidad_to)
    
-   insert(moneda_from= from_currency,moneda_to= to_currency, cantidad_from= q, cantidad_to= cantidad_to)
-   
-   return redirect(url_for('index'))
+    return redirect(url_for('index'))
    
 
 
@@ -54,7 +75,7 @@ def status():
     for moneda in mis_monedas:
         cantidad = cantidad_crypto(moneda)
         if cantidad > 0:
-            valor_actual += get_exchange(moneda,'EUR')
+            valor_actual += cantidad * get_exchange(moneda,'EUR')
             
     return render_template('status.html', pageTitle='status', invertido = inversion, recuperado = inversion_recuperada, valor_actual = valor_actual)
   

@@ -3,6 +3,7 @@
     
 
 <h1>Movimientos</h1>
+{%if data%}
 <table role="grid">
  <thead>
      <tr>
@@ -16,6 +17,7 @@
      </tr>
  </thead>
  <tbody>
+    
      {%for Movimientos in data%}
      <tr>
          <td>{{Movimientos.fecha}}</td>
@@ -27,6 +29,10 @@
 
      </tr>
      {%endfor%}
+     
  </tbody>
 </table>
+{%else%}
+     <p>Sin Movimientos</p>
+     {% endif %}
 {%endblock%}

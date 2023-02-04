@@ -34,11 +34,11 @@ def insert(moneda_from,cantidad_from,moneda_to,cantidad_to):
     
 def invertido():
     connect = Conexion('SELECT sum( cantidad_from) FROM Movimientos WHERE moneda_from="EUR"')
-    return connect.res.fetchone()[0]
+    return connect.res.fetchone()[0] or 0
 
 def recuperado():
     connect = Conexion('SELECT sum( cantidad_to) FROM Movimientos WHERE moneda_to="EUR"')
-    return connect.res.fetchone()[0]
+    return connect.res.fetchone()[0] or 0
     
     
 def cantidad_crypto(moneda):
