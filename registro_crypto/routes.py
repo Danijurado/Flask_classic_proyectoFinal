@@ -10,7 +10,6 @@ def validate(cantidad_from,moneda):
     
     if moneda == 'EUR':
         return errores
-    #print(cantidad_crypto(moneda))
     if cantidad_from > cantidad_crypto(moneda):
         errores.append('Error: Introduce moneda que poseas')
         
