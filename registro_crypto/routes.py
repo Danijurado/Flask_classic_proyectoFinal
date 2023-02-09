@@ -26,14 +26,14 @@ def index():
        registro['hora'] = fecha.strftime('%H:%M')
     
     
-    return render_template('index.html',pageTitle='inicio', data=registros )
+    return render_template('index.html',pageTitle='inicio', data=registros, page='inicio')
 
 @app.route('/purchase')
 def compra():
     #get_exchange('EUR','BTC')
     #resultado = get_exchange('EUR','BTC')
     
-    return render_template('purchase.html',pageTitle='compra')
+    return render_template('purchase.html',pageTitle='compra',page='compra')
 
 def get_unit(from_currency,to_currency):
     if request.form['unit']:
@@ -77,5 +77,5 @@ def status():
         if cantidad > 0:
             valor_actual += cantidad * get_exchange(moneda,'EUR')
             
-    return render_template('status.html', pageTitle='status', invertido = inversion, recuperado = inversion_recuperada, valor_actual = valor_actual)
+    return render_template('status.html', pageTitle='status', invertido = inversion, recuperado = inversion_recuperada, valor_actual = valor_actual,page='status')
   

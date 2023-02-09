@@ -15,7 +15,7 @@
         <div>
             <label for="moneda_from">From</label>
             <select id="moneda_from" name="moneda_from" required>
-                <option value="">Ingrese tipo de moneda</option>
+                <option disabled selected>Ingrese tipo de moneda</option>
                 <option value="EUR" {% if moneda_from=="EUR" %} selected {% endif %}>EUR</option>
                 <option value="ETH" {% if moneda_from=="ETH" %} selected {% endif %}>ETH</option>
                 <option value="BNB" {% if moneda_from=="BNB" %} selected {% endif %}>BNB</option>
@@ -46,7 +46,7 @@
         <div>
             <label for="moneda_to">to</label>
             <select id="moneda_to" name="moneda_to" required>
-                <option value="">Ingrese tipo de moneda</option>
+                <option disabled selected>Ingrese tipo de moneda</option>
                 <option value="EUR" {% if moneda_to=="EUR" %} selected {% endif %}>EUR</option>
                 <option value="ETH" {% if moneda_to=="ETH" %} selected {% endif %}>ETH</option>
                 <option value="BNB" {% if moneda_to=="BNB" %} selected {% endif %}>BNB</option>

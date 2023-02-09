@@ -20,10 +20,21 @@
     </header>
     <nav aria-label="breadcrumb" class="container">
         <ul>
-          <li><a href="/">Inicio</a></li>
-          <li><a href="/purchase">Compra</a></li>
-          <li><a href="/status">Status</a></li>
-          
+            {% if page == "inicio" %}
+            <li>Inicio</li>
+            <li><a href="/purchase">Compra</a></li>
+            <li><a href="/status">Status</a></li>
+            {% endif %}
+            {% if page == "compra" %}
+            <li><a href="/">Inicio</a></li>
+            <li>Compra</li>
+            <li><a href="/status">Status</a></li>
+            {% endif %}
+            {% if page == "status" %}
+            <li><a href="/">Inicio</a></li>
+            <li><a href="/purchase">Compra</a></li>
+            <li>Status</li>
+            {% endif %}
         </ul>
       </nav>
     
