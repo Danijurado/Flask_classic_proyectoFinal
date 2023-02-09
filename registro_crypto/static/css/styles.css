@@ -39,3 +39,8 @@ a{
 .cta {
     background-color: var(--my_color);
 }
+
+table{
+    width: 50%;
+	height: 300px;
+}
